@@ -1,115 +1,70 @@
 body {
-  margin: 0;
-  background: #000;
-  font-family: Arial, sans-serif;
-  color: white;
+    margin: 0;
+    background: #000;
+    font-family: Arial, sans-serif;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.container {
-  max-width: 400px;
-  margin: 60px auto;
-  background: rgba(0,0,0,0.4);
-  padding: 30px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
+.login-wrapper {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.story-card {
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 25px;
-  border-radius: 14px;
-  background: rgba(0,0,0,0.3);
-  margin-top: 25px;
+.login-card {
+    background: #111;
+    padding: 30px 25px;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 360px;
+    margin: auto;
+    box-shadow: 0 0 40px rgba(255, 115, 0, 0.1);
+    border: 1px solid rgba(255,255,255,0.06);
 }
 
-button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-  border-radius: 12px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  color: white;
-  transition: 0.2s;
-}
-
-button:hover {
-  opacity: 0.8;
+h2 {
+    margin: 0 0 20px 0;
+    text-align: center;
+    font-weight: 600;
 }
 
 input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.2);
-  background: transparent;
-  color: white;
-  margin-top: 10px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    background: #0d0d0d;
+    color: white;
+    margin-top: 12px;
+    font-size: 16px;
 }
 
-.rgb {
-  background: linear-gradient(90deg, #ff0080, #00eaff, #00ff6a);
-  background-size: 300% 300%;
-  animation: rgb 3s infinite;
+input:focus {
+    outline: none;
+    border-color: #ff7a00;
 }
 
-@keyframes rgb {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-/* ====== LOGIN PAGE ====== */
-
-.login-container {
-  max-width: 360px;
-  margin: 120px auto 0 auto;
-  padding: 35px;
-  border-radius: 18px;
-
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(12px);
-
-  text-align: center;
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    background: #ff7a00;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    font-size: 18px;
 }
 
-.login-container h2 {
-  margin-bottom: 25px;
-  font-size: 26px;
-  font-weight: bold;
-  color: #fff;
+.btn-login:active {
+    opacity: 0.8;
 }
 
-.login-container .error {
-  background: rgba(255, 50, 50, 0.2);
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  border: 1px solid rgba(255, 0, 0, 0.3);
-  font-size: 14px;
+.error {
+    color: #ff4444;
+    margin-bottom: 10px;
+    text-align: center;
 }
-
-.login-container input {
-  width: 100%;
-  padding: 12px;
-  margin-top: 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.05);
-  color: white;
-}
-
-.login-container button {
-  margin-top: 18px;
-  background: #ff6a00;
-  border-radius: 12px;
-  font-weight: bold;
-  transition: 0.2s;
-}
-
-.login-container button:hover {
-  opacity: 0.85;
-}
-
