@@ -31,11 +31,10 @@ body {
 
 /* Centralização */
 .login-wrapper {
-    height: calc(100vh - env(safe-area-inset-top));
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
 }
 
 /* Card glass */
