@@ -1,49 +1,52 @@
-/* Reset para evitar scroll lateral */
+/* Reset total */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Remove rolagem lateral e trava viewport */
 html, body {
     width: 100%;
     height: 100%;
-    overflow-x: hidden;
-    -webkit-text-size-adjust: 100%; /* evita zoom no input no iOS */
+    overflow: hidden;
+    background: #000;
+    -webkit-text-size-adjust: 100%; /* evita zoom iOS */
 }
 
+/* Remove fundo branco do topo e das barras */
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
     background: linear-gradient(135deg, #00f2ff, #00ff9d);
     background-size: 200% 200%;
     animation: gradientMove 12s ease infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: 'Poppins', sans-serif;
+    position: fixed;
+    inset: 0;
 }
 
-/* Animação suave do fundo */
+/* Animação do fundo */
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
+/* Container do login */
 .login-container {
     width: 90%;
     max-width: 360px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.10);
     padding: 28px;
     border-radius: 22px;
     backdrop-filter: blur(18px);
     border: 1px solid rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 40px rgba(0,0,0,0.25);
-
-    /* ANIMAÇÃO DE ENTRADA */
-    transform: translateY(20px);
-    opacity: 0;
     animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 /* Fade suave */
@@ -70,15 +73,21 @@ input {
     border-radius: 10px;
     border: none;
     outline: none;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.30);
     color: white;
     font-size: 16px;
     backdrop-filter: blur(6px);
     transition: 0.2s;
 }
 
+/* Evita zoom quando clica no iPhone */
+input,
+button {
+    font-size: 16px !important;
+}
+
 input:focus {
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.40);
     box-shadow: 0 0 8px #00ffbf;
 }
 
@@ -90,9 +99,9 @@ button {
     font-size: 17px;
     font-weight: bold;
     color: #fff;
-    cursor: pointer;
     border: none;
     border-radius: 12px;
+    cursor: pointer;
     background: linear-gradient(90deg, #00ff9d, #00eaff);
     background-size: 200% 200%;
     animation: neonMove 4s ease infinite;
@@ -109,10 +118,9 @@ button:active {
     transform: scale(0.96);
 }
 
-/* Evita scroll vertical desnecessário */
+/* Corrige telas MUITO baixas */
 @media (max-height: 600px) {
-    body {
-        align-items: flex-start;
-        padding-top: 40px;
+    .login-container {
+        transform: scale(0.9);
     }
 }
