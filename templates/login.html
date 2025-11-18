@@ -1,8 +1,34 @@
-<html><body><h2>Login</h2>{% if error %}<p>{{error}}</p>{% endif %}
-<form method='POST'>
-<input name='user' placeholder='Usuário'>
-<input name='pass' type='password' placeholder='Senha'>
-<button>Entrar</button>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<script src="{{ url_for('static', filename='script.js') }}"></script>
-</form></body></html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <h2>Login</h2>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            <input name="user" placeholder="Usuário" required>
+            <input name="pass" type="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
