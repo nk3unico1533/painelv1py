@@ -1,18 +1,37 @@
-ta assim agora chatgpt para de ser burro. este era o antigo css q estava dando certo 
-
+/* ======= BODY ======= */
 body {
     margin: 0;
     padding: 0;
     height: 100vh;
+    background: linear-gradient(180deg, #000000, #0d0d0d, #000000);
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    display: block; /* corrigido */
+    position: relative;
+}
+
+/* Wrapper que centraliza o card SEM quebrar partículas */
+.login-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #000;
-    overflow: hidden;
-    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    position: relative;
+    z-index: 5;
 }
 
-/* Partículas de fundo */
+/* ======= PARTÍCULAS ======= */
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
 .particle {
     position: absolute;
     width: 4px;
@@ -29,7 +48,7 @@ body {
     100% { transform: translateY(0px); opacity: 0.3; }
 }
 
-/* Card de vidro */
+/* ======= CARD ======= */
 .login-box {
     width: 85%;
     max-width: 400px;
@@ -40,6 +59,7 @@ body {
     border: 2px solid #ffdd3c;
     box-shadow: 0 0 35px #ffdd3c66;
     animation: glowPulse 5s infinite ease-in-out, fadeIn 1s ease-out;
+    z-index: 10;
 }
 
 @keyframes glowPulse {
@@ -53,17 +73,25 @@ body {
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Título */
+/* ======= TÍTULO ======= */
 .login-title {
-    color: #ffd831;
     text-align: center;
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 900;
     margin-bottom: 25px;
-    text-shadow: 0 0 12px #ffdd3c99;
+    color: #000;
+    text-shadow:
+        0 0 4px #ffdd3c,
+        0 0 10px #ffdd3c,
+        0 0 16px #ffd700;
+    background: #ffdd3c;
+    padding: 10px 0;
+    border-radius: 10px;
+    border: 2px solid #ffdd3c;
+    box-shadow: 0 0 15px #ffdd3c;
 }
 
-/* Mensagem de erro */
+/* ======= ERRO ======= */
 .error {
     background: #ff3e3eaa;
     color: white;
@@ -74,7 +102,7 @@ body {
     font-size: 15px;
 }
 
-/* Inputs */
+/* ======= INPUTS ======= */
 .input-field {
     width: 100%;
     padding: 14px;
@@ -97,7 +125,7 @@ body {
     outline: none;
 }
 
-/* Links */
+/* ======= LINKS ======= */
 .login-links {
     display: flex;
     justify-content: space-between;
@@ -110,7 +138,7 @@ body {
     text-decoration: none;
 }
 
-/* Botão */
+/* ======= BOTÃO ======= */
 .login-btn {
     width: 100%;
     padding: 15px;
