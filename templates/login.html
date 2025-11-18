@@ -1,43 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="/static/login.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+  <title>Login</title>
 
-    <!-- Fonte Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Fonte Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <title>Login</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="/static/login.css">
 </head>
 <body>
 
-<div class="rgb-bg"></div>
+  <!-- fundo RGB fixo -->
+  <div class="rgb-bg" aria-hidden="true"></div>
 
-<div class="login-wrapper">
+  <div class="login-wrapper">
     <div class="login-card">
-        <h2>Área Secreta</h2>
+      <h2>Login</h2>
 
-        {% if error %}
-            <p class="error">{{ error }}</p>
-        {% endif %}
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% endif %}
 
-        <form method="POST">
+      <form method="POST" autocomplete="off">
+        <input type="text" name="user" placeholder="Usuário" class="login-input" required />
+        <input type="password" name="pass" placeholder="Senha" class="login-input" required />
 
-            <input type="text" name="user" placeholder="Usuário" class="login-input" required>
+        <div class="links">
+          <a href="/forgot">Esqueceu a senha?</a>
+          <a href="/change">Trocar senha</a>
+        </div>
 
-            <input type="password" name="pass" placeholder="Senha" class="login-input" required>
-
-            <div class="links">
-                <a href="#">Esqueceu a senha?</a>
-                <a href="#">Trocar senha</a>
-            </div>
-
-            <button type="submit">Entrar</button>
-
-        </form>
+        <button type="submit">Entrar</button>
+      </form>
     </div>
-</div>
+  </div>
 
 </body>
 </html>
