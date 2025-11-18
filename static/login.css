@@ -1,159 +1,151 @@
 /* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; width:100%; -webkit-text-size-adjust:100%; }
+body {
+  background: #000;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color:#fff;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-y:auto;
 }
 
-html, body {
-    height: 100%;
-    width: 100%;
-    background: #000;
-    overflow-x: hidden;
+/* fundo RGB fixo, cobre a tela inteira sem repetir (infinito) */
+.rgb-bg{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background: linear-gradient(120deg, #00d4ff 0%, #00ff9e 40%, #00eaff 60%, #ffd200 100%);
+  background-size: 180% 180%;
+  filter: blur(40px) saturate(120%);
+  opacity:0.45;
+  background-attachment: fixed;
+  animation: rgbShift 8s ease-in-out infinite;
+}
+@keyframes rgbShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* FUNDO RGB SUAVE */
-.rgb-bg {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at 20% 20%, #00ffe1 0%, transparent 60%),
-                radial-gradient(circle at 80% 80%, #ff009d 0%, transparent 60%);
-    filter: blur(80px);
-    opacity: 0.35;
-    animation: pulseRGB 6s infinite alternate;
-    z-index: -2;
-}
-
-@keyframes pulseRGB {
-    0% { opacity: 0.25; }
-    100% { opacity: 0.45; }
-}
-
-/* CENTRALIZAÇÃO */
+/* centraliza card verticalmente */
 .login-wrapper {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
 }
 
-/* CARD COM BORDA AMARELA + GLOW */
+/* CARD: BORDA AMARELA SÓ (sem glow externo) */
 .login-card {
-    width: 100%;
-    max-width: 360px;
-    padding: 40px 30px;
+  width:100%;
+  max-width:380px;
+  padding:36px 30px;
+  border-radius:20px;
 
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(15px);
+  /* glass */
+  background: rgba(0,0,0,0.62);
+  backdrop-filter: blur(10px) saturate(120%);
 
-    border-radius: 20px;
-    border: 2px solid rgba(255, 215, 0, 0.7);
+  /* borda amarela (sem glow) */
+  border: 2px solid rgba(255, 215, 0, 0.95);
 
-    box-shadow:
-        0 0 25px rgba(255, 255, 0, 0.4),
-        0 0 55px rgba(255, 255, 0, 0.25),
-        inset 0 0 25px rgba(255, 200, 0, 0.2);
-
-    animation: fadeIn 1s ease-out;
+  /* leve sombra interna para profundidade, sem glow externo */
+  box-shadow: inset 0 2px 18px rgba(0,0,0,0.45);
 }
 
-/* ANIMAÇÃO DE ENTRADA */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+/* título */
+.login-card h2 {
+  margin:0 0 18px;
+  text-align:center;
+  color:#ffd700;
+  font-size:26px;
+  font-weight:700;
+  letter-spacing:0.2px;
 }
 
-/* TÍTULO */
-h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #ffd700;
-    font-size: 26px;
-    font-weight: 700;
-    text-shadow: 0 0 20px rgba(255, 255, 0, 0.7);
+/* mensagem de erro */
+.error {
+  text-align:center;
+  color:#ff6b6b;
+  margin-bottom:10px;
 }
 
-/* INPUTS */
+/* inputs */
 .login-input {
-    width: 100%;
-    padding: 15px;
-    margin-top: 15px;
-
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    background: rgba(0, 0, 0, 0.55);
-
-    color: #fff;
-    font-size: 15px;
-
-    transition: 0.25s;
+  width:100%;
+  padding:14px 16px;
+  margin-top:14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.45);
+  color:#fff;
+  font-size:16px; /* evita zoom iOS */
+  line-height:1.1;
+  transition: box-shadow .18s, border-color .18s, transform .12s;
+  -webkit-appearance:none;
 }
+
+.login-input::placeholder { color: rgba(255,255,255,0.45); }
 
 .login-input:focus {
-    border-color: #ffd700;
-    box-shadow: 0 0 12px #ffd700;
-    outline: none;
+  outline:none;
+  border-color: rgba(255,215,0,0.9);
+  box-shadow: 0 0 8px rgba(255,215,0,0.08);
+  transform: translateY(-1px);
 }
 
-/* TIRA FUNDO BRANCO DO IPHONE */
+/* remove autofill branco no iOS/Chrome */
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-    background: rgba(0,0,0,0.55) !important;
-    -webkit-text-fill-color: #fff !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0,0,0,0.45) inset !important;
+  -webkit-text-fill-color: #fff !important;
 }
 
-/* LINKS */
+/* links pequeno */
 .links {
-    text-align: center;
-    margin-top: 10px;
+  display:flex;
+  justify-content:space-between;
+  margin-top:12px;
+  gap:8px;
 }
 
 .links a {
-    color: #ffd700;
-    text-decoration: none;
-    font-size: 14px;
-    margin: 0 8px;
-    opacity: 0.8;
+  color: rgba(255,215,0,0.9);
+  text-decoration:none;
+  font-size:14px;
+  opacity:0.95;
 }
 
-.links a:hover {
-    opacity: 1;
-}
-
-/* BOTÃO DOURADO ANIMADO */
+/* botão dourado (sem glow externo) */
 button {
-    width: 100%;
-    padding: 15px;
-    margin-top: 25px;
+  width:100%;
+  padding:14px;
+  margin-top:20px;
+  border-radius:12px;
+  border:none;
+  font-weight:700;
+  font-size:17px;
+  cursor:pointer;
 
-    border: none;
-    border-radius: 12px;
-
-    background: linear-gradient(90deg, #ffbf00, #ffd700, #ffea00);
-    background-size: 300% 300%;
-    animation: goldMove 4s infinite alternate;
-
-    font-weight: 700;
-    font-size: 18px;
-    color: #000;
-
-    cursor: pointer;
-    transition: 0.2s;
+  background: linear-gradient(90deg,#ffcf33 0%, #ffd64d 50%, #ffcf33 100%);
+  color: #000;
+  transition: transform .12s ease, box-shadow .12s;
 }
 
-button:hover {
-    transform: scale(1.05);
+button:hover { transform: translateY(-3px); }
+
+/* MOBILE: garante que o teclado não tá aproximando demais e corrige espaçamento */
+@media (max-width:420px){
+  .login-card { padding:28px 18px; max-width: 92%; }
+  .login-input { font-size:16px; padding:12px 14px; }
+  h2 { font-size:24px; }
 }
 
-@keyframes goldMove {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
-}
-
-/* ERRO */
-.error {
-    text-align: center;
-    color: #ff4d4d;
-    margin-bottom: 10px;
+/* acessibilidade - contraste */
+@media (prefers-contrast: high) {
+  .login-card { border-color: #ffd700; }
+  button { box-shadow: none; }
 }
