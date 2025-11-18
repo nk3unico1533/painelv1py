@@ -1,115 +1,101 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session
+import os
 
 app = Flask(__name__)
-app.secret_key = "supersecretkey"
+app.secret_key = "segredo123"
 
-USER = "admin"
-PASS = "1234"
-
-def login_required(f):
-    def wrapper(*args, **kwargs):
-        if "user" not in session:
-            return redirect("/login")
-        return f(*args, **kwargs)
-    wrapper.__name__ = f.__name__
-    return wrapper
-
+# Credenciais do admin
+ADMIN_USER = "admin"
+ADMIN_PASS = "1234"
 
 @app.route("/")
 def home():
     return redirect("/login")
 
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    error = None
     if request.method == "POST":
-        if request.form["user"] == USER and request.form["pass"] == PASS:
-            session["user"] = USER
+        user = request.form.get("username")
+        password = request.form.get("password")
+
+        if user == ADMIN_USER and password == ADMIN_PASS:
+            session["user"] = user
             return redirect("/dashboard")
         else:
-            error = "Usuário ou senha incorretos"
-    return render_template("login.html", error=error)
+            return render_template("login.html", error="Usuário ou senha incorretos")
 
+    return render_template("login.html")
+
+@app.route("/dashboard")
+def dashboard():
+    if "user" not in session:
+        return redirect("/login")
+    return render_template("dashboard.html")
+
+@app.route("/cpf", methods=["GET", "POST"])
+def cpf():
+    if "user" not in session:
+        return redirect("/login")
+
+    result = None
+    if request.method == "POST":
+        cpf_value = request.form.get("cpf")
+        result = f"Resultado fictício para CPF: {cpf_value}"
+
+    return render_template("cpf.html", result=result)
+
+@app.route("/cnpj", methods=["GET", "POST"])
+def cnpj():
+    if "user" not in session:
+        return redirect("/login")
+
+    result = None
+    if request.method == "POST":
+        cnpj_value = request.form.get("cnpj")
+        result = f"Resultado fictício para CNPJ: {cnpj_value}"
+
+    return render_template("cnpj.html", result=result)
+
+@app.route("/email", methods=["GET", "POST"])
+def email():
+    if "user" not in session:
+        return redirect("/login")
+
+    result = None
+    if request.method == "POST":
+        email_value = request.form.get("email")
+        result = f"Resultado fictício para Email: {email_value}"
+
+    return render_template("email.html", result=result)
+
+@app.route("/telefone", methods=["GET", "POST"])
+def telefone():
+    if "user" not in session:
+        return redirect("/login")
+
+    result = None
+    if request.method == "POST":
+        phone_value = request.form.get("telefone")
+        result = f"Resultado fictício para Telefone: {phone_value}"
+
+    return render_template("telefone.html", result=result)
+
+@app.route("/nome", methods=["GET", "POST"])
+def nome():
+    if "user" not in session:
+        return redirect("/login")
+
+    result = None
+    if request.method == "POST":
+        nome_value = request.form.get("nome")
+        result = f"Resultado fictício para Nome: {nome_value}"
+
+    return render_template("nome.html", result=result)
 
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect("/login")
 
-
-@app.route("/dashboard")
-@login_required
-def dashboard():
-    return render_template("dashboard.html")
-
-
-# ---------------------- CONSULTAS FAKE ---------------------- #
-
-@app.route("/cpf", methods=["GET", "POST"])
-@login_required
-def cpf():
-    data = None
-    if request.method == "POST":
-        data = {
-            "nome": "João da Silva",
-            "nascimento": "12/03/1990",
-            "mae": "Maria da Silva"
-        }
-    return render_template("cpf.html", data=data)
-
-
-@app.route("/cnpj", methods=["GET", "POST"])
-@login_required
-def cnpj():
-    data = None
-    if request.method == "POST":
-        data = {
-            "empresa": "Tech Solutions LTDA",
-            "abertura": "2012",
-            "status": "Ativa"
-        }
-    return render_template("cnpj.html", data=data)
-
-
-@app.route("/email", methods=["GET", "POST"])
-@login_required
-def email():
-    data = None
-    if request.method == "POST":
-        data = {
-            "dono": "Roberto Lima",
-            "desde": "2017",
-            "vazamentos": 4
-        }
-    return render_template("email.html", data=data)
-
-
-@app.route("/telefone", methods=["GET", "POST"])
-@login_required
-def telefone():
-    data = None
-    if request.method == "POST":
-        data = {
-            "dono": "Carlos Pereira",
-            "operadora": "Vivo",
-            "estado": "SP"
-        }
-    return render_template("telefone.html", data=data)
-
-
-@app.route("/nome", methods=["GET", "POST"])
-@login_required
-def nome():
-    data = None
-    if request.method == "POST"]:
-        data = {
-            "nome": request.form["nome"],
-            "registros": 3,
-            "possiveis_docs": ["CPF listado", "RG registrado"]
-        }
-    return render_template("nome.html", data=data)
-
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=10000)
