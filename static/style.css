@@ -60,3 +60,56 @@ input {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+/* ====== LOGIN PAGE ====== */
+
+.login-container {
+  max-width: 360px;
+  margin: 120px auto 0 auto;
+  padding: 35px;
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.login-container .error {
+  background: rgba(255, 50, 50, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  font-size: 14px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  color: white;
+}
+
+.login-container button {
+  margin-top: 18px;
+  background: #ff6a00;
+  border-radius: 12px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.login-container button:hover {
+  opacity: 0.85;
+}
+
