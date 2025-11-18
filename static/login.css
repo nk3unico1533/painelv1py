@@ -17,9 +17,12 @@ html, body {
 
 /* Fundo RGB */
 body {
+    
     background: linear-gradient(120deg, #ff0080, #00eaff, #00ff6a);
     background-size: 300% 300%;
     animation: rgbBG 10s infinite alternate;
+    background: inherit;
+    min-height: 100vh;
 }
 
 @keyframes rgbBG {
