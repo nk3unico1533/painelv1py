@@ -17,7 +17,7 @@ html, body {
 
 /* Fundo RGB */
 body {
-    background: inherit, linear-gradient(120deg, #ff0080, #00eaff, #00ff6a);
+    background: linear-gradient(120deg, #ff0080, #00eaff, #00ff6a);
     background-size: 300% 300%;
     animation: rgbBG 10s infinite alternate;
 }
