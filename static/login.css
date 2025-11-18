@@ -9,17 +9,20 @@ html, body {
     width: 100%;
     height: 100%;
     margin: 0;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+
+    /* Só safe-area no topo! */
+    padding-top: env(safe-area-inset-top);
+
     background-color: transparent;
 }
 
 /* Fundo RGB */
 body {
-    
     background: linear-gradient(120deg, #ff0080, #00eaff, #00ff6a);
     background-size: 300% 300%;
     animation: rgbBG 10s infinite alternate;
     min-height: 100vh;
+    overflow-x: hidden; /* impede scroll lateral preto */
 }
 
 @keyframes rgbBG {
@@ -30,7 +33,7 @@ body {
 
 /* Centralização */
 .login-wrapper {
-    height: 100vh;
+    height: calc(100vh - env(safe-area-inset-top));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +69,7 @@ h2 {
     font-weight: 600;
 }
 
-/* Input estilizado */
+/* Inputs */
 .login-input {
     width: 100%;
     padding: 14px;
@@ -84,7 +87,7 @@ h2 {
     box-shadow: 0 0 10px #00eaff;
 }
 
-/* Remove fundo branco no iPhone */
+/* Autofill proteção iPhone */
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
     background: rgba(0,0,0,0.4) !important;
@@ -92,7 +95,7 @@ input:-webkit-autofill:focus {
     transition: background-color 600000s ease-in-out 0s;
 }
 
-/* Botão neon */
+/* Botão RGB */
 button {
     width: 100%;
     padding: 15px;
