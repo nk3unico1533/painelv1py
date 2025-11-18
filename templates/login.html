@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Aurora Painel</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 <body>
 
+    <!-- Fundo das partículas -->
+    <div id="particles-js"></div>
+
+    <!-- Painel de Login -->
     <form class="login-box" method="POST">
 
-        <div class="login-title">Login</div>
+        <div class="login-title">
+            <span class="aurora">Aurora</span> <span class="painel">Painel</span>
+        </div>
 
         {% if error %}
             <div class="error">{{ error }}</div>
@@ -40,7 +46,7 @@
         <button class="login-btn">Entrar</button>
 
     </form>
-  
-<script src="particles.js"></script>
+
+    <script src="{{ url_for('static', filename='particles.js') }}"></script>
 </body>
 </html>
