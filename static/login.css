@@ -5,23 +5,37 @@
     box-sizing: border-box;
 }
 
+/* FUNDO PRETO COMPLETO SEM VAZAR */
 html, body {
     height: 100%;
+    width: 100%;
     overflow-x: hidden;
+    background: #000;
 }
 
-/* FUNDO RGB INFINITO */
-body {
-    min-height: 100vh;
+/* BORDA RGB AO REDOR DA TELA */
+.rgb-border {
+    position: fixed;
+    inset: 0;
     background: linear-gradient(120deg, #ff0080, #00eaff, #00ff6a);
-    background-size: 300% 300%;
-    animation: rgbBG 10s infinite alternate linear;
+    filter: blur(35px);
+    z-index: -2;
+    animation: rgbMove 10s infinite alternate;
 }
 
-@keyframes rgbBG {
-    0% { background-position: 0 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0 50%; }
+@keyframes rgbMove {
+    0% { filter: blur(30px) brightness(0.7); }
+    100% { filter: blur(65px) brightness(1.1); }
+}
+
+/* CAMADA DO FUNDO PRETO */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: #000;
+    opacity: 0.85;
+    z-index: -1;
 }
 
 /* CENTRALIZAÇÃO */
@@ -30,22 +44,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
 }
 
-/* CARD */
+/* CARD ESTILO LUXO + GAMER */
 .login-card {
     width: 100%;
     max-width: 360px;
-    padding: 35px 28px;
-    border-radius: 20px;
+    padding: 40px 32px;
+    border-radius: 18px;
 
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(14px);
 
-    box-shadow: 0 0 25px rgba(255,255,255,0.15);
-    animation: fadeIn 0.8s ease;
+    border: 1px solid rgba(255, 215, 0, 0.25); /* dourado suave */
+
+    box-shadow:
+        0 0 25px rgba(255, 215, 0, 0.15),
+        0 0 35px rgba(0, 255, 255, 0.12);
+
+    animation: fadeIn 0.9s ease-out;
 }
 
 @keyframes fadeIn {
@@ -53,77 +70,87 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* TÍTULO */
+/* TÍTULO DOURADO */
 h2 {
     text-align: center;
     margin-bottom: 25px;
-    color: #fff;
     font-size: 26px;
-    font-weight: 600;
+    color: #ffd700;
+    font-weight: 700;
+    text-shadow: 0 0 12px rgba(255, 255, 0, 0.4);
 }
 
-/* INPUTS */
+/* INPUT FUTURISTA */
 .login-input {
     width: 100%;
     padding: 14px;
-    margin-top: 12px;
+    margin-top: 15px;
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.25);
-    background: rgba(0,0,0,0.4);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.55);
     color: #fff;
     font-size: 16px;
+
+    transition: 0.25s;
 }
 
 .login-input:focus {
-    outline: none;
     border-color: #00eaff;
-    box-shadow: 0 0 10px #00eaff;
+    box-shadow: 0 0 12px #00eaff;
+    outline: none;
 }
 
-/* AUTO FILL SAFARI */
+/* TIRA FUNDO BRANCO DO IPHONE */
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-    background: rgba(0,0,0,0.4) !important;
+    background: rgba(0,0,0,0.55) !important;
     -webkit-text-fill-color: #fff !important;
-    transition: background-color 999999s ease-out 0s;
+    transition: background-color 600000s 0s;
 }
 
-/* BOTÃO */
+/* BOTÃO DOURADO GAMER */
 button {
     width: 100%;
     padding: 15px;
-    margin-top: 20px;
+    margin-top: 25px;
     border-radius: 12px;
     border: none;
+
+    background: linear-gradient(90deg, #ffbf00, #ffd700, #ffea00);
+    background-size: 300% 300%;
+    animation: goldFlow 4s infinite alternate;
+
     font-size: 18px;
     font-weight: bold;
-    color: white;
-
-    background: linear-gradient(90deg, #ff0080, #00eaff, #00ff6a);
-    background-size: 300% 300%;
-    animation: rgbButton 3s infinite;
+    color: #000;
 
     cursor: pointer;
+    transition: transform 0.2s;
 }
 
-@keyframes rgbButton {
+button:hover {
+    transform: scale(1.05);
+}
+
+/* DOURADO ANIMADO */
+@keyframes goldFlow {
     0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
 }
 
 /* LINKS */
 .links {
+    margin-top: 12px;
     text-align: center;
-    margin-top: 10px;
 }
 
 .links a {
-    color: #fff;
+    color: #ffd700;
     font-size: 14px;
-    margin: 0 8px;
     text-decoration: none;
-    opacity: 0.9;
+    margin: 0 8px;
+    opacity: 0.8;
 }
 
 .links a:hover {
@@ -132,7 +159,7 @@ button {
 
 /* ERRO */
 .error {
-    text-align: center;
     color: #ff4d4d;
+    text-align: center;
     margin-bottom: 10px;
 }
