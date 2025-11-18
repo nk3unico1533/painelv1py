@@ -8,14 +8,17 @@
 </head>
 <body>
 
-    <!-- Fundo das partículas -->
-    <div id="particles-js"></div>
+    <!-- Partículas simples do SEU CSS (as que você já usava) -->
+    <div id="particles-container"></div>
 
-    <!-- Painel de Login -->
     <form class="login-box" method="POST">
 
         <div class="login-title">
-            <span class="aurora">Aurora</span> <span class="painel">Painel</span>
+            <span style="color: black; 
+                         -webkit-text-stroke: 1.5px #ffdd3c; 
+                         text-shadow: 0 0 12px #ffdd3c;">
+                Aurora Painel
+            </span>
         </div>
 
         {% if error %}
@@ -47,6 +50,21 @@
 
     </form>
 
-    <script src="{{ url_for('static', filename='particles.js') }}"></script>
+    <script>
+        // cria partículas igual antes
+        const container = document.getElementById("particles-container");
+
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement("div");
+            p.classList.add("particle");
+
+            p.style.top = Math.random() * 100 + "vh";
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.animationDelay = Math.random() * 3 + "s";
+
+            container.appendChild(p);
+        }
+    </script>
+
 </body>
 </html>
