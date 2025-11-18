@@ -4,7 +4,6 @@ import os
 app = Flask(__name__)
 app.secret_key = "segredo123"
 
-# Credenciais do admin
 ADMIN_USER = "admin"
 ADMIN_PASS = "1234"
 
@@ -98,4 +97,5 @@ def logout():
     return redirect("/login")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
