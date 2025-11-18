@@ -3,39 +3,31 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-/* FUNDO PRETO COMPLETO SEM VAZAR */
 html, body {
     height: 100%;
     width: 100%;
+    background: #000;
     overflow-x: hidden;
-    background: #000;
 }
 
-/* BORDA RGB AO REDOR DA TELA */
-.rgb-border {
+/* FUNDO RGB SUAVE */
+.rgb-bg {
     position: fixed;
     inset: 0;
-    background: linear-gradient(120deg, #ff0080, #00eaff, #00ff6a);
-    filter: blur(35px);
+    background: radial-gradient(circle at 20% 20%, #00ffe1 0%, transparent 60%),
+                radial-gradient(circle at 80% 80%, #ff009d 0%, transparent 60%);
+    filter: blur(80px);
+    opacity: 0.35;
+    animation: pulseRGB 6s infinite alternate;
     z-index: -2;
-    animation: rgbMove 10s infinite alternate;
 }
 
-@keyframes rgbMove {
-    0% { filter: blur(30px) brightness(0.7); }
-    100% { filter: blur(65px) brightness(1.1); }
-}
-
-/* CAMADA DO FUNDO PRETO */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: #000;
-    opacity: 0.85;
-    z-index: -1;
+@keyframes pulseRGB {
+    0% { opacity: 0.25; }
+    100% { opacity: 0.45; }
 }
 
 /* CENTRALIZAÇÃO */
@@ -46,58 +38,61 @@ body::before {
     align-items: center;
 }
 
-/* CARD ESTILO LUXO + GAMER */
+/* CARD COM BORDA AMARELA + GLOW */
 .login-card {
     width: 100%;
     max-width: 360px;
-    padding: 40px 32px;
-    border-radius: 18px;
+    padding: 40px 30px;
 
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(14px);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(15px);
 
-    border: 1px solid rgba(255, 215, 0, 0.25); /* dourado suave */
+    border-radius: 20px;
+    border: 2px solid rgba(255, 215, 0, 0.7);
 
     box-shadow:
-        0 0 25px rgba(255, 215, 0, 0.15),
-        0 0 35px rgba(0, 255, 255, 0.12);
+        0 0 25px rgba(255, 255, 0, 0.4),
+        0 0 55px rgba(255, 255, 0, 0.25),
+        inset 0 0 25px rgba(255, 200, 0, 0.2);
 
-    animation: fadeIn 0.9s ease-out;
+    animation: fadeIn 1s ease-out;
 }
 
+/* ANIMAÇÃO DE ENTRADA */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(25px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* TÍTULO DOURADO */
+/* TÍTULO */
 h2 {
     text-align: center;
     margin-bottom: 25px;
-    font-size: 26px;
     color: #ffd700;
+    font-size: 26px;
     font-weight: 700;
-    text-shadow: 0 0 12px rgba(255, 255, 0, 0.4);
+    text-shadow: 0 0 20px rgba(255, 255, 0, 0.7);
 }
 
-/* INPUT FUTURISTA */
+/* INPUTS */
 .login-input {
     width: 100%;
-    padding: 14px;
+    padding: 15px;
     margin-top: 15px;
-    border-radius: 12px;
 
+    border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: rgba(0, 0, 0, 0.55);
+
     color: #fff;
-    font-size: 16px;
+    font-size: 15px;
 
     transition: 0.25s;
 }
 
 .login-input:focus {
-    border-color: #00eaff;
-    box-shadow: 0 0 12px #00eaff;
+    border-color: #ffd700;
+    box-shadow: 0 0 12px #ffd700;
     outline: none;
 }
 
@@ -106,49 +101,18 @@ input:-webkit-autofill,
 input:-webkit-autofill:focus {
     background: rgba(0,0,0,0.55) !important;
     -webkit-text-fill-color: #fff !important;
-    transition: background-color 600000s 0s;
-}
-
-/* BOTÃO DOURADO GAMER */
-button {
-    width: 100%;
-    padding: 15px;
-    margin-top: 25px;
-    border-radius: 12px;
-    border: none;
-
-    background: linear-gradient(90deg, #ffbf00, #ffd700, #ffea00);
-    background-size: 300% 300%;
-    animation: goldFlow 4s infinite alternate;
-
-    font-size: 18px;
-    font-weight: bold;
-    color: #000;
-
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-button:hover {
-    transform: scale(1.05);
-}
-
-/* DOURADO ANIMADO */
-@keyframes goldFlow {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
 }
 
 /* LINKS */
 .links {
-    margin-top: 12px;
     text-align: center;
+    margin-top: 10px;
 }
 
 .links a {
     color: #ffd700;
-    font-size: 14px;
     text-decoration: none;
+    font-size: 14px;
     margin: 0 8px;
     opacity: 0.8;
 }
@@ -157,9 +121,39 @@ button:hover {
     opacity: 1;
 }
 
+/* BOTÃO DOURADO ANIMADO */
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 25px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(90deg, #ffbf00, #ffd700, #ffea00);
+    background-size: 300% 300%;
+    animation: goldMove 4s infinite alternate;
+
+    font-weight: 700;
+    font-size: 18px;
+    color: #000;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+@keyframes goldMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
 /* ERRO */
 .error {
-    color: #ff4d4d;
     text-align: center;
+    color: #ff4d4d;
     margin-bottom: 10px;
 }
