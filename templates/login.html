@@ -2,33 +2,30 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <title>Login</title>
-
-    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <div class="login-container">
+    <div class="login-wrapper">
+        <div class="login-card">
 
-        <h2>Login</h2>
+            <h2>Login</h2>
 
-        {% if error %}
-            <p class="error">{{ error }}</p>
-        {% endif %}
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
 
-        <form method="POST">
-            <input name="user" placeholder="Usuário" required>
-            <input name="pass" type="password" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
-        </form>
+            <form method="POST">
+                <input name="user" autocomplete="off" placeholder="Usuário" required>
+                <input name="pass" type="password" placeholder="Senha" required>
+                <button type="submit" class="btn-login">Entrar</button>
+            </form>
 
+        </div>
     </div>
-
-    <!-- JS -->
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 </html>
