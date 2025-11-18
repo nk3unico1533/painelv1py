@@ -1,73 +1,29 @@
-/* Remove qualquer vazamento lateral */
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-/* Fundo com gradient neon */
-body {
-  background: linear-gradient(135deg, #00f7ff, #00ffc3);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: sans-serif;
-}
-
-/* Container do login */
-.login-container {
+.login-card {
   width: 90%;
-  max-width: 380px;
+  max-width: 350px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
   padding: 30px;
   border-radius: 20px;
-  backdrop-filter: blur(15px);
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 25px rgba(0,255,255,0.4);
-  text-align: center;
+  margin: 0 auto;
 }
 
-/* Título */
-.login-container h1 {
-  color: #fff;
-  margin-bottom: 25px;
-  text-shadow: 0 0 10px cyan;
-}
-
-/* Inputs */
-.login-container input {
+.login-input {
   width: 100%;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  background: rgba(255,255,255,0.20);
-  color: #fff;
-  font-size: 16px;
-  backdrop-filter: blur(5px);
-}
-
-.login-container input::placeholder {
-  color: #d9fff7;
-}
-
-/* Botão */
-.login-container button {
-  width: 100%;
-  padding: 15px;
-  border: none;
+  padding: 12px 14px;
   border-radius: 12px;
-  background: linear-gradient(90deg, #00ffe1, #00b7ff);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.20) !important; /* tira o fundo branco do Safari */
   color: #fff;
-  font-weight: bold;
-  font-size: 17px;
-  cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 0 12px rgba(0,255,255,0.4);
+  margin-bottom: 15px;
+  outline: none;
+  font-size: 15px;
 }
 
-.login-container button:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 18px rgba(0,255,255,0.7);
+/* Remove fundo branco padrão do iPhone */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  background: rgba(0, 0, 0, 0.20) !important;
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 10000s ease-in-out 0s;
 }
