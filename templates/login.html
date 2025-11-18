@@ -1,51 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
-  <title>Login</title>
-
-  <!-- Fonte Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/static/login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 <body>
-  
-  <div class="particles">
-  {% for i in range(18) %}
-  <div class="particle"
-       style="left: {{ (loop.index0 * 5) % 100 }}%;
-              animation-delay: -{{ loop.index0 * 0.9 }}s;">
-  </div>
-  {% endfor %}
-</div>
 
-  <!-- fundo RGB fixo -->
-  <div class="rgb-bg" aria-hidden="true"></div>
+    <!-- Partículas -->
+    <div class="particle" style="top: 12%; left: 20%;"></div>
+    <div class="particle" style="top: 35%; left: 70%;"></div>
+    <div class="particle" style="top: 62%; left: 45%;"></div>
+    <div class="particle" style="top: 80%; left: 15%;"></div>
+    <div class="particle" style="top: 50%; left: 85%;"></div>
 
-  <div class="login-wrapper">
-    <div class="login-card">
-      <h2>Login</h2>
+    <form class="login-box" method="POST">
 
-      {% if error %}
-        <p class="error">{{ error }}</p>
-      {% endif %}
+        <div class="login-title">Login</div>
 
-      <form method="POST" autocomplete="off">
-        <input type="text" name="user" placeholder="Usuário" class="login-input" required />
-        <input type="password" name="pass" placeholder="Senha" class="login-input" required />
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
 
-        <div class="links">
-          <a href="/forgot">Esqueceu a senha?</a>
-          <a href="/change">Trocar senha</a>
+        <input 
+            type="text" 
+            name="user" 
+            placeholder="Usuário" 
+            class="input-field"
+            required
+        >
+
+        <input 
+            type="password" 
+            name="pass" 
+            placeholder="Senha" 
+            class="input-field"
+            required
+        >
+
+        <div class="login-links">
+            <a href="#">Esqueceu a senha?</a>
+            <a href="#">Trocar senha</a>
         </div>
 
-        <button type="submit">Entrar</button>
-      </form>
-    </div>
-  </div>
+        <button class="login-btn">Entrar</button>
+
+    </form>
 
 </body>
 </html>
