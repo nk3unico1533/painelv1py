@@ -75,20 +75,17 @@ body {
 
 /* ======= TÍTULO ======= */
 .login-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffeb7a;
     text-align: center;
-    font-size: 28px;
-    font-weight: 900;
     margin-bottom: 25px;
-    color: #000;
-    text-shadow:
-        0 0 4px #ffdd3c,
-        0 0 10px #ffdd3c,
-        0 0 16px #ffd700;
-    background: #ffdd3c;
-    padding: 10px 0;
-    border-radius: 10px;
-    border: 2px solid #ffdd3c;
-    box-shadow: 0 0 15px #ffdd3c;
+
+    /* Glow bonito, sem fundo horroroso */
+    text-shadow: 
+        0 0 8px #ffeb7a,
+        0 0 12px #ffdd55,
+        0 0 20px #ffcc33;
 }
 
 /* ======= ERRO ======= */
