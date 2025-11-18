@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="/static/login.css">
+
+    <!-- Fonte Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <title>Login</title>
 </head>
 <body>
 
-<div class="rgb-border"></div>
+<div class="rgb-bg"></div>
 
 <div class="login-wrapper">
     <div class="login-card">
-
         <h2>Área Secreta</h2>
 
         {% if error %}
@@ -21,31 +24,18 @@
 
         <form method="POST">
 
-            <input 
-                type="text" 
-                name="user" 
-                placeholder="Usuário"
-                class="login-input"
-                required
-            >
+            <input type="text" name="user" placeholder="Usuário" class="login-input" required>
 
-            <input 
-                type="password" 
-                name="pass" 
-                placeholder="Senha"
-                class="login-input"
-                required
-            >
+            <input type="password" name="pass" placeholder="Senha" class="login-input" required>
 
             <div class="links">
-                <a href="/forgot">Esqueceu a senha?</a>
-                <a href="/change">Trocar senha</a>
+                <a href="#">Esqueceu a senha?</a>
+                <a href="#">Trocar senha</a>
             </div>
 
             <button type="submit">Entrar</button>
 
         </form>
-
     </div>
 </div>
 
